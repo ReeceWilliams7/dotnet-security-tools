@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>RW7.DotNetSecurityTools.SecurityKeyCreator.ConsoleApp</AssemblyName>
+    <RootNamespace>RW7.DotNetSecurityTools.SecurityKeyCreator.ConsoleApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecurityKeys\SecurityKeys.csproj" />
+  </ItemGroup>
+
+</Project>
