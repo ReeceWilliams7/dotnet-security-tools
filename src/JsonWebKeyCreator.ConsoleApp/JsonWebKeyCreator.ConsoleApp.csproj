@@ -5,6 +5,16 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp</AssemblyName>
     <RootNamespace>RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp</RootNamespace>
+    <PackageId>RW7.DotNetSecurityTools.JsonWebKeyCreator</PackageId>
+    <Product>RW7.DotNetSecurityTools</Product>
+    <Version>0.1.0</Version>
+    <Authors>RW7</Authors>
+    <Company>RW7</Company>
+    <PackageTags>JsonWebKey, JWK</PackageTags>
+    <RepositoryUrl>https://github.com/ReeceWilliams7/dotnet-security-tools</RepositoryUrl>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>create-jwk</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
