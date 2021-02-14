@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecurityKeys", "src\Securit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{95D331DA-A681-4C89-92D7-5895B34159C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityKeyCreator.ConsoleApp", "src\SecurityKeyCreator.ConsoleApp\SecurityKeyCreator.ConsoleApp.csproj", "{29EEFE81-5BC4-4B08-A819-8249D5F04FD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonWebKeyCreator.ConsoleApp", "src\JsonWebKeyCreator.ConsoleApp\JsonWebKeyCreator.ConsoleApp.csproj", "{29EEFE81-5BC4-4B08-A819-8249D5F04FD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
