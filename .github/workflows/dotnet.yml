@@ -24,6 +24,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack
-      run: dotnet pack ./src/JsonWebKeyCreator/JsonWebKeyCreator.csproj --configuration "Release" --output ./artifacts
+      run: dotnet pack ./src/JsonWebKeyCreator.ConsoleApp/JsonWebKeyCreator.ConsoleApp.csproj --configuration "Release" --output ./artifacts
     - name: Push
       run: dotnet nuget push ./artifacts/RW7.DotNetSecurityTools.JsonWebKeyCreator.nupkg --source https://api.nuget.org/v3/index.json
