@@ -12,6 +12,10 @@ namespace SecurityKeyCreator.ConsoleApp
 
             WriteSectionDivider();
 
+            WriteSection("Base64 Encoded JsonWebKey", output.Base64JsonWebKey);
+
+            WriteSectionDivider();
+
             WriteSection("RSA Private Key", output.RsaPrivateKey);
 
             WriteSectionDivider();
