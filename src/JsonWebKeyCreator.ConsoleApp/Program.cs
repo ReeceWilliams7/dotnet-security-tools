@@ -1,13 +1,40 @@
 ﻿using System;
 
-namespace SecurityKeyCreator.ConsoleApp
+using Microsoft.Extensions.DependencyInjection;
+
+using RW7.DotNetSecurityTools.SecurityKeys;
+using RW7.DotNetSecurityTools.SecurityKeys.Extensions;
+using RW7.DotNetSecurityTools.SecurityKeys.Models;
+
+using Serilog;
+
+namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var output = RW7.DotNetSecurityTools.SecurityKeys.JsonWebKeyCreator.CreateSecurityKey();
+            Log.Logger = new LoggerConfiguration()
+                         .WriteTo.Console()
+                         .CreateLogger();
 
+            var services = new ServiceCollection();
+            services.AddSecurityKeyServices();
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            using var scope = serviceProvider.CreateScope();
+            var jsonWebKeyCreator = scope.ServiceProvider.GetService<IJsonWebKeyCreator>();
+
+            var output = jsonWebKeyCreator.Create();
+
+            WriteOutputs(output);
+
+            Console.Read();
+        }
+
+        private static void WriteOutputs(JsonWebKeyOutput output)
+        {
             WriteSection("JsonWebKey", output.JsonWebKey);
 
             WriteSectionDivider();
@@ -21,8 +48,6 @@ namespace SecurityKeyCreator.ConsoleApp
             WriteSectionDivider();
 
             WriteSection("RSA Public Key", output.RsaPublicKey);
-
-            Console.Read();
         }
 
         private static void WriteSection(string sectionTitle, string sectionValue)

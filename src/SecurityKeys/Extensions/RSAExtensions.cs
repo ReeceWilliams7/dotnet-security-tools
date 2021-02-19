@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 
 using RW7.DotNetSecurityTools.Core;
 
-namespace SecurityKeys.Extensions
+namespace RW7.DotNetSecurityTools.SecurityKeys.Extensions
 {
     internal static class RSAExtensions
     {

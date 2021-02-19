@@ -2,19 +2,25 @@
 
 using Newtonsoft.Json;
 
-using SecurityKeys;
-using SecurityKeys.Extensions;
-using SecurityKeys.Models;
+using RW7.DotNetSecurityTools.SecurityKeys.Extensions;
+using RW7.DotNetSecurityTools.SecurityKeys.Models;
 
 namespace RW7.DotNetSecurityTools.SecurityKeys
 {
-    public static class JsonWebKeyCreator
+    public class JsonWebKeyCreator : IJsonWebKeyCreator
     {
-        public static JsonWebKeyOutput CreateSecurityKey()
+        private readonly IRsaSecurityKeyCreator _rsaSecurityKeyCreator;
+
+        public JsonWebKeyCreator(IRsaSecurityKeyCreator rsaSecurityKeyCreator)
+        {
+            _rsaSecurityKeyCreator = rsaSecurityKeyCreator;
+        }
+
+        public JsonWebKeyOutput Create()
         {
             var output = new JsonWebKeyOutput();
 
-            var rsaSecurityKey = RsaSecurityKeyHelper.CreateRsaSecurityKey();
+            var rsaSecurityKey = _rsaSecurityKeyCreator.Create();
 
             var rsaPublicKey = rsaSecurityKey.Rsa.ExportPemEncodedPublicKey();
             var rsaPrivateKey = rsaSecurityKey.Rsa.ExportPemEncodedPrivateKey();

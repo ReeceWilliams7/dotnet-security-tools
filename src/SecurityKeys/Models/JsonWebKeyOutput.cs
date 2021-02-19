@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace SecurityKeys.Models
+namespace RW7.DotNetSecurityTools.SecurityKeys.Models
 {
     public class JsonWebKeyOutput
     {

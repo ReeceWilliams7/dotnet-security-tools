@@ -4,11 +4,11 @@ using IdentityModel;
 
 using Microsoft.IdentityModel.Tokens;
 
-namespace SecurityKeys
+namespace RW7.DotNetSecurityTools.SecurityKeys
 {
-    internal static class RsaSecurityKeyHelper
+    public class RsaSecurityKeyCreator : IRsaSecurityKeyCreator
     {
-        internal static RsaSecurityKey CreateRsaSecurityKey()
+        public RsaSecurityKey Create()
         {
             return new RsaSecurityKey(RSA.Create())
             {
