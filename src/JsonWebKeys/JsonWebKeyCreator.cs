@@ -1,11 +1,10 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-
 using Newtonsoft.Json;
+using RW7.DotNetSecurityTools.JsonWebKeys.Models;
+using RW7.DotNetSecurityTools.RsaSecurityKeys;
+using RW7.DotNetSecurityTools.RsaSecurityKeys.Extensions;
 
-using RW7.DotNetSecurityTools.SecurityKeys.Extensions;
-using RW7.DotNetSecurityTools.SecurityKeys.Models;
-
-namespace RW7.DotNetSecurityTools.SecurityKeys
+namespace RW7.DotNetSecurityTools.JsonWebKeys
 {
     public class JsonWebKeyCreator : IJsonWebKeyCreator
     {

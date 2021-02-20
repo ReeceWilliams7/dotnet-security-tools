@@ -4,7 +4,7 @@ using IdentityModel;
 
 using Microsoft.IdentityModel.Tokens;
 
-namespace RW7.DotNetSecurityTools.SecurityKeys
+namespace RW7.DotNetSecurityTools.RsaSecurityKeys
 {
     public class RsaSecurityKeyCreator : IRsaSecurityKeyCreator
     {

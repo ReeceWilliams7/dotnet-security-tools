@@ -1,19 +1,19 @@
 using System.Security.Cryptography;
 
-using RW7.DotNetSecurityTools.Core;
+using RW7.DotNetSecurityTools.Pem;
 
-namespace RW7.DotNetSecurityTools.SecurityKeys.Extensions
+namespace RW7.DotNetSecurityTools.RsaSecurityKeys.Extensions
 {
-    internal static class RSAExtensions
+    public static class RSAExtensions
     {
-        internal static string ExportPemEncodedPublicKey(this RSA rsa)
+        public static string ExportPemEncodedPublicKey(this RSA rsa)
         {
             var keyBytes = rsa.ExportRSAPublicKey();
             var pemChars = PemEncoding.Write(PemEncodingLabels.RsaPublicKey, keyBytes);
             return new string(pemChars);
         }
 
-        internal static string ExportPemEncodedPrivateKey(this RSA rsa)
+        public static string ExportPemEncodedPrivateKey(this RSA rsa)
         {
             var keyBytes = rsa.ExportRSAPrivateKey();
             var pemChars = PemEncoding.Write(PemEncodingLabels.RsaPrivateKey, keyBytes);

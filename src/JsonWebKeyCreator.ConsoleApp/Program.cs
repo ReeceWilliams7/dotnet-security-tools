@@ -1,75 +1,43 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using RW7.DotNetSecurityTools.SecurityKeys;
-using RW7.DotNetSecurityTools.SecurityKeys.Extensions;
-using RW7.DotNetSecurityTools.SecurityKeys.Models;
-
+using RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.DependencyInjection;
+using RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks;
+using RW7.DotNetSecurityTools.JsonWebKeys;
 using Serilog;
 
 namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
                          .WriteTo.Console()
                          .CreateLogger();
 
-            var services = new ServiceCollection();
-            services.AddSecurityKeyServices();
-
-            var serviceProvider = services.BuildServiceProvider();
+            var serviceProvider = BuildServiceProvider();
 
             using var scope = serviceProvider.CreateScope();
             var jsonWebKeyCreator = scope.ServiceProvider.GetService<IJsonWebKeyCreator>();
+            var outputWriter = scope.ServiceProvider.GetService<IJsonWebKeyOutputWriter>();
 
             var output = jsonWebKeyCreator.Create();
 
-            WriteOutputs(output);
+            await outputWriter.WriteAsync(output);
 
             Console.Read();
         }
 
-        private static void WriteOutputs(JsonWebKeyOutput output)
+        private static ServiceProvider BuildServiceProvider()
         {
-            WriteSection("JsonWebKey", output.JsonWebKey);
+            var services = new ServiceCollection();
+            services.AddSecurityKeyServices();
+            services.AddSingleton<IJsonWebKeyOutputWriter, ConsoleJsonWebKeyOutputWriter>();
 
-            WriteSectionDivider();
-
-            WriteSection("Base64 Encoded JsonWebKey", output.Base64JsonWebKey);
-
-            WriteSectionDivider();
-
-            WriteSection("RSA Private Key", output.RsaPrivateKey);
-
-            WriteSectionDivider();
-
-            WriteSection("RSA Public Key", output.RsaPublicKey);
-        }
-
-        private static void WriteSection(string sectionTitle, string sectionValue)
-        {
-            WriteSectionBorder();
-            Console.WriteLine($"{sectionTitle}:");
-            Console.WriteLine();
-            Console.WriteLine(sectionValue);
-            Console.WriteLine();
-            WriteSectionBorder();
-        }
-
-        private static void WriteSectionBorder()
-        {
-            Console.WriteLine("******************************************");
-        }
-
-        private static void WriteSectionDivider()
-        {
-            Console.WriteLine();
-            Console.WriteLine("-------------------------------------------");
-            Console.WriteLine();
+            return services.BuildServiceProvider();
         }
     }
 }

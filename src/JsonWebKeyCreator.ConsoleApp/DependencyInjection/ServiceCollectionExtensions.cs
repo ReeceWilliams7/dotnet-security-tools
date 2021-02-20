@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace RW7.DotNetSecurityTools.SecurityKeys.Extensions
+using RW7.DotNetSecurityTools.JsonWebKeys;
+using RW7.DotNetSecurityTools.RsaSecurityKeys;
+
+namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
@@ -8,7 +11,7 @@ namespace RW7.DotNetSecurityTools.SecurityKeys.Extensions
         {
             services.AddSingleton<IRsaSecurityKeyCreator, RsaSecurityKeyCreator>();
 
-            services.AddSingleton<IJsonWebKeyCreator, JsonWebKeyCreator>();
+            services.AddSingleton<IJsonWebKeyCreator, JsonWebKeys.JsonWebKeyCreator>();
 
             return services;
         }

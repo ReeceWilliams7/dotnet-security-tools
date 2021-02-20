@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-namespace RW7.DotNetSecurityTools.SecurityKeys
+namespace RW7.DotNetSecurityTools.RsaSecurityKeys
 {
     public interface IRsaSecurityKeyCreator
     {

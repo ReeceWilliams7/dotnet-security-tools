@@ -2,19 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>RW7.DotNetSecurityTools.SecurityKeys</AssemblyName>
-    <RootNamespace>RW7.DotNetSecurityTools.SecurityKeys</RootNamespace>
+    <AssemblyName>RW7.DotNetSecurityTools.JsonWebKeys</AssemblyName>
+    <RootNamespace>RW7.DotNetSecurityTools.JsonWebKeys</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="5.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\RsaSecurityKeys\RsaSecurityKeys.csproj" />
   </ItemGroup>
 
 </Project>

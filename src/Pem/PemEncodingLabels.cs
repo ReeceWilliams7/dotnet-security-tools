@@ -1,6 +1,6 @@
-﻿namespace RW7.DotNetSecurityTools.Core
+﻿namespace RW7.DotNetSecurityTools.Pem
 {
-    public class PemEncodingLabels
+    public static class PemEncodingLabels
     {
         public const string RsaPrivateKey = "RSA PRIVATE KEY";
 
