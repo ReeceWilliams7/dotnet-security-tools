@@ -26,4 +26,4 @@ jobs:
     - name: Pack
       run: dotnet pack ./src/JsonWebKeyCreator.ConsoleApp/JsonWebKeyCreator.ConsoleApp.csproj --configuration "Release" --output ./artifacts
     - name: Push
-      run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}}
+      run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
