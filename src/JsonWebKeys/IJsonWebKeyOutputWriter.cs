@@ -5,5 +5,6 @@ namespace RW7.DotNetSecurityTools.JsonWebKeys
 {
     public interface IJsonWebKeyOutputWriter : IOutputWriter<JsonWebKeyOutput>
     {
+
     }
 }
