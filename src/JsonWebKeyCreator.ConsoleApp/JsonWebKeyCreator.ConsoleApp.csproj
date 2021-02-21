@@ -7,7 +7,7 @@
     <RootNamespace>RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp</RootNamespace>
     <PackageId>RW7.DotNetSecurityTools.JsonWebKeyCreator</PackageId>
     <Product>RW7.DotNetSecurityTools</Product>
-    <Version>0.4.0</Version>
+    <Version>0.5.0</Version>
     <Authors>RW7</Authors>
     <Company>RW7</Company>
     <PackageTags>JsonWebKey, JWK</PackageTags>
@@ -18,6 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
@@ -25,6 +26,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JsonWebKeys\JsonWebKeys.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

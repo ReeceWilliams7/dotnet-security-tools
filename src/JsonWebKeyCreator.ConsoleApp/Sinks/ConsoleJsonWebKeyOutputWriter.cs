@@ -12,7 +12,14 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
 
         public ConsoleJsonWebKeyOutputWriter()
         {
-            _outputAction = System.Console.WriteLine;
+            _outputAction = Console.WriteLine;
+        }
+
+        public string OutputType => Enum.GetName(typeof(OutputTypes), OutputTypes.Console);
+
+        public bool CanWrite(string outputType)
+        {
+            return string.Equals(outputType, OutputType, StringComparison.InvariantCultureIgnoreCase);
         }
 
         public async Task WriteAsync(JsonWebKeyOutput output)
@@ -23,6 +30,10 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
 
         private void WriteOutputs(JsonWebKeyOutput output)
         {
+            _outputAction(string.Empty);
+
+            WriteSectionDivider();
+
             WriteSection("JsonWebKey", output.JsonWebKey);
 
             WriteSectionDivider();
@@ -36,21 +47,17 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
             WriteSectionDivider();
 
             WriteSection("RSA Public Key", output.RsaPublicKey);
+
+            WriteSectionDivider();
         }
 
         private void WriteSection(string sectionTitle, string sectionValue)
         {
-            WriteSectionBorder();
+            _outputAction(string.Empty);
             _outputAction($"{sectionTitle}:");
             _outputAction(string.Empty);
             _outputAction(sectionValue);
             _outputAction(string.Empty);
-            WriteSectionBorder();
-        }
-
-        private void WriteSectionBorder()
-        {
-            _outputAction("******************************************");
         }
 
         private void WriteSectionDivider()
