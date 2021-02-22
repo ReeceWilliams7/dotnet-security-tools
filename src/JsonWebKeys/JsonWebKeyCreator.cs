@@ -37,12 +37,14 @@ namespace RW7.DotNetSecurityTools.JsonWebKeys
             var jwk = JsonWebKeyConverter.ConvertFromRSASecurityKey(rsaSecurityKey);
             jwk.Alg = SecurityAlgorithms.RsaSha256;
 
+            output.JsonWebKey = jwk;
+
             _logger.LogInformation("Serializing the JsonWebKey");
             var jwkJson = JsonConvert.SerializeObject(jwk, Formatting.Indented);
 
             output.RsaPublicKey = rsaPublicKey;
             output.RsaPrivateKey = rsaPrivateKey;
-            output.JsonWebKey = jwkJson;
+            output.JsonWebKeyString = jwkJson;
 
             return output;
         }
