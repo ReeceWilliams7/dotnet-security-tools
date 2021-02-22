@@ -1,4 +1,4 @@
-name: .NET Pull Request
+name: .NET Branch
 
 on:
   push:
