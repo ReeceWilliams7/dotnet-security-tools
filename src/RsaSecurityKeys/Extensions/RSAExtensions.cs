@@ -4,7 +4,7 @@ using RW7.DotNetSecurityTools.Pem;
 
 namespace RW7.DotNetSecurityTools.RsaSecurityKeys.Extensions
 {
-    public static class RSAExtensions
+    public static class RsaExtensions
     {
         public static string ExportPemEncodedPublicKey(this RSA rsa)
         {

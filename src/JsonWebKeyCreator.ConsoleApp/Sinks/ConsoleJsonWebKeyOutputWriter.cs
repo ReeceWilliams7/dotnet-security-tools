@@ -34,7 +34,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
 
             WriteSectionDivider();
 
-            WriteSection("JsonWebKey", output.JsonWebKey);
+            WriteSection("JsonWebKey", output.JsonWebKeyString);
 
             WriteSectionDivider();
 
