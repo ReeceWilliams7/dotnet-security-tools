@@ -21,6 +21,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.DependencyInjecti
             services.AddSingleton<IJsonWebKeyCreationProcessor, JsonWebKeyCreationProcessor>();
 
             services.AddSingleton<IJsonWebKeyOutputWriter, ConsoleJsonWebKeyOutputWriter>();
+            services.AddSingleton<IJsonWebKeyOutputWriter, FileJsonWebKeyOutputWriter>();
 
             return services;
         }
