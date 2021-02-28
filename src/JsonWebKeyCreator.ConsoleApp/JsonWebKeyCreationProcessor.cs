@@ -33,14 +33,16 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             var output = _jsonWebKeyCreator.Create();
             _logger.LogInformation("Successfully created JsonWebKey....");
 
-
-            _logger.LogInformation($"Looking for output writers for the JsonWebKey, of the requested type \"{options.OutputType.ToString()}\"");
-            foreach (var outputWriter in _outputWriters)
+            foreach (var outputType in options.OutputTypes)
             {
-                if (outputWriter.CanWrite(Enum.GetName(typeof(OutputTypes), options.OutputType)))
+                _logger.LogInformation($"Looking for output writers for the JsonWebKey, of the requested type \"{outputType}\"");
+                foreach (var outputWriter in _outputWriters)
                 {
-                    _logger.LogInformation($"Found an output writer matching the requested type \"{options.OutputType.ToString()}\" - {outputWriter.GetType().Name}");
-                    await outputWriter.WriteAsync(output);
+                    if (outputWriter.CanWrite(Enum.GetName(typeof(OutputType), outputType)))
+                    {
+                        _logger.LogInformation($"Found an output writer matching the requested type \"{outputType}\" - {outputWriter.GetType().Name}");
+                        await outputWriter.WriteAsync(output);
+                    }
                 }
             }
         }

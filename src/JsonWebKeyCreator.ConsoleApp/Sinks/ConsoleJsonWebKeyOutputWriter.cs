@@ -15,7 +15,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
             _outputAction = Console.WriteLine;
         }
 
-        public string OutputType => Enum.GetName(typeof(OutputTypes), OutputTypes.Console);
+        public string OutputType => Enum.GetName(typeof(OutputType), Sinks.OutputType.Console);
 
         public bool CanWrite(string outputType)
         {

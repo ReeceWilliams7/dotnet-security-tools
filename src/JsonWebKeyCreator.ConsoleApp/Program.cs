@@ -21,18 +21,16 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
                          .WriteTo.Console()
                          .CreateLogger();
 
-            var serviceProvider = BuildServiceProvider();
-
             var parser = BuildParser();
 
-            Log.Logger.Information("Parsing command line options....");
+            Log.Logger.Debug("Parsing command line options....");
             var parsedArguments = parser.ParseArguments<Options>(args);
-            Log.Logger.Information("Finished parsing command line options....");
+            Log.Logger.Debug("Finished parsing command line options....");
 
             await parsedArguments.WithParsedAsync(
                 async options =>
                 {
-                    await CreateJsonWebKey(options, serviceProvider);
+                    await CreateJsonWebKey(options);
                 });
 
             await parsedArguments.WithNotParsedAsync(
@@ -45,9 +43,10 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             Console.Read();
         }
 
-        private static ServiceProvider BuildServiceProvider()
+        private static ServiceProvider BuildServiceProvider(Options options)
         {
             var services = new ServiceCollection();
+            services.AddSingleton<Options>(options);
             services.AddJsonWebKeyCreatorServices();
 
             return services.BuildServiceProvider();
@@ -66,8 +65,10 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             });
         }
 
-        private static async Task CreateJsonWebKey(Options options, IServiceProvider serviceProvider)
+        private static async Task CreateJsonWebKey(Options options)
         {
+            var serviceProvider = BuildServiceProvider(options);
+
             using var scope = serviceProvider.CreateScope();
 
             var processor = scope.ServiceProvider.GetService<IJsonWebKeyCreationProcessor>();
@@ -82,7 +83,13 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             var helpText = HelpText.AutoBuild(
                 result, h =>
                 {
+                    h.AddEnumValuesToHelpText = true;
                     h.AdditionalNewLineAfterOption = true;
+                    h.AddDashesToOption = true;
+                    h.AddNewLineBetweenHelpSections = true;
+
+                    h.Copyright = "Copyright (C) 2021 Reece Williams";
+                    h.Heading = "RW7.DotNetSecurityTools - create-jwk";
                     return HelpText.DefaultParsingErrorsHandler(result, h);
                 },
                 e => e);
