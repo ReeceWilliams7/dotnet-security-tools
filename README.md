@@ -1,3 +1,5 @@
+[![.NET Main](https://github.com/ReeceWilliams7/dotnet-security-tools/actions/workflows/dotnet_main.yml/badge.svg)](https://github.com/ReeceWilliams7/dotnet-security-tools/actions/workflows/dotnet_main.yml)
+
 # dotnet-security-tools
 
 # A collection of convenient security related .NET tools.
