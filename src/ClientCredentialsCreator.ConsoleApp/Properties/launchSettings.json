@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ClientCredentialsCreator.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--output-types \"console, file\""
+    }
+  }
+}

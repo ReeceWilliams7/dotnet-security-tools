@@ -6,11 +6,11 @@ using CommandLine.Text;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.DependencyInjection;
+using RW7.DotNetSecurityTools.ClientCredentialsGenerator.ConsoleApp.DependencyInjection;
 
 using Serilog;
 
-namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
+namespace RW7.DotNetSecurityTools.ClientCredentialsGenerator.ConsoleApp
 {
     public class Program
     {
@@ -30,7 +30,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             await parsedArguments.WithParsedAsync(
                 async options =>
                 {
-                    await CreateJsonWebKey(options);
+                    await CreateClientCredentials(options);
                 });
 
             await parsedArguments.WithNotParsedAsync(
@@ -39,13 +39,15 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
                     DisplayHelp(parsedArguments);
                     await Task.FromResult(0);
                 });
+
+
         }
 
         private static ServiceProvider BuildServiceProvider(Options options)
         {
             var services = new ServiceCollection();
             services.AddSingleton<Options>(options);
-            services.AddJsonWebKeyCreatorServices();
+            services.AddClientCredentialsCreatorServices();
 
             return services.BuildServiceProvider();
         }
@@ -63,17 +65,17 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             });
         }
 
-        private static async Task CreateJsonWebKey(Options options)
+        private static async Task CreateClientCredentials(Options options)
         {
             var serviceProvider = BuildServiceProvider(options);
 
             using var scope = serviceProvider.CreateScope();
 
-            var processor = scope.ServiceProvider.GetService<IJsonWebKeyCreationProcessor>();
+            var processor = scope.ServiceProvider.GetService<IClientCredentialsCreationProcessor>();
 
             await processor.ProcessAsync(options);
 
-            Log.Logger.Information("JsonWebKey creation complete");
+            Log.Logger.Information("Client Credentials creation complete");
         }
 
         private static void DisplayHelp<T>(ParserResult<T> result)
@@ -87,7 +89,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
                     h.AddNewLineBetweenHelpSections = true;
 
                     h.Copyright = "Copyright (C) 2021 Reece Williams";
-                    h.Heading = "RW7.DotNetSecurityTools - create-jwk";
+                    h.Heading = "RW7.DotNetSecurityTools - create-client-credentials";
                     return HelpText.DefaultParsingErrorsHandler(result, h);
                 },
                 e => e);
