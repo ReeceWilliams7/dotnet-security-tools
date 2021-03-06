@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
 
+using RW7.DotNetSecurityTools.Core;
 using RW7.DotNetSecurityTools.JsonWebKeys;
 using RW7.DotNetSecurityTools.JsonWebKeys.Models;
 
@@ -27,7 +28,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
             _options = options;
         }
 
-        public string OutputType => Enum.GetName(typeof(OutputType), Sinks.OutputType.File);
+        public string OutputType => Enum.GetName(typeof(OutputType), Core.OutputType.File);
 
         public bool CanWrite(string outputType)
         {

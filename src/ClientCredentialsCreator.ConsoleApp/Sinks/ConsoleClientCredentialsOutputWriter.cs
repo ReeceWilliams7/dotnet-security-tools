@@ -1,17 +1,16 @@
 using System;
 using System.Threading.Tasks;
 
+using RW7.DotNetSecurityTools.ClientCredentials;
 using RW7.DotNetSecurityTools.Core;
-using RW7.DotNetSecurityTools.JsonWebKeys;
-using RW7.DotNetSecurityTools.JsonWebKeys.Models;
 
 namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
 {
-    public class ConsoleJsonWebKeyOutputWriter : IJsonWebKeyOutputWriter
+    public class ConsoleClientCredentialsOutputWriter : IClientCredentialsOutputWriter
     {
         private readonly Action<string> _outputAction;
 
-        public ConsoleJsonWebKeyOutputWriter()
+        public ConsoleClientCredentialsOutputWriter()
         {
             _outputAction = Console.WriteLine;
         }
@@ -23,42 +22,32 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
             return string.Equals(outputType, OutputType, StringComparison.InvariantCultureIgnoreCase);
         }
 
-        public async Task WriteAsync(JsonWebKeyOutput output)
+
+        public async Task WriteAsync(ClientCredentialsOutput output)
         {
             WriteOutputs(output);
+
             await Task.CompletedTask;
         }
 
-        private void WriteOutputs(JsonWebKeyOutput output)
+        private void WriteOutputs(ClientCredentialsOutput output)
         {
             _outputAction(string.Empty);
 
             WriteSectionDivider();
 
-            WriteSection("JsonWebKey", output.JsonWebKeyString);
+            WriteSection("Client Id", output.ClientId);
 
             WriteSectionDivider();
 
-            WriteSection("Base64 Encoded JsonWebKey", output.Base64JsonWebKey);
-
-            WriteSectionDivider();
-
-            WriteSection("RSA Private Key", output.RsaPrivateKey);
-
-            WriteSectionDivider();
-
-            WriteSection("RSA Public Key", output.RsaPublicKey);
+            WriteSection("Client Secret", output.ClientSecret);
 
             WriteSectionDivider();
         }
 
         private void WriteSection(string sectionTitle, string sectionValue)
         {
-            _outputAction(string.Empty);
-            _outputAction($"{sectionTitle}:");
-            _outputAction(string.Empty);
-            _outputAction(sectionValue);
-            _outputAction(string.Empty);
+            _outputAction($"{sectionTitle}: {sectionValue}");
         }
 
         private void WriteSectionDivider()

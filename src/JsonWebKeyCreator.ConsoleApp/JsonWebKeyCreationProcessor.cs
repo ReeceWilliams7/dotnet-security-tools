@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
 
-using RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks;
+using RW7.DotNetSecurityTools.Core;
 using RW7.DotNetSecurityTools.JsonWebKeys;
 
 namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp

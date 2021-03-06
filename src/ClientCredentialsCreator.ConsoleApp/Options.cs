@@ -6,7 +6,7 @@ using CommandLine;
 
 using RW7.DotNetSecurityTools.Core;
 
-namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
+namespace RW7.DotNetSecurityTools.ClientCredentialsGenerator.ConsoleApp
 {
     public class Options
     {

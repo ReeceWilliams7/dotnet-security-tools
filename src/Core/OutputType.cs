@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
+namespace RW7.DotNetSecurityTools.Core
 {
     [Flags]
     public enum OutputType
