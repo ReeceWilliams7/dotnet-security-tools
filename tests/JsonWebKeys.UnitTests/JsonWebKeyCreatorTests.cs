@@ -1,9 +1,6 @@
 using FluentAssertions;
 
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-
-using Moq;
 
 using RW7.DotNetSecurityTools.JsonWebKeys;
 using RW7.DotNetSecurityTools.Pem;
@@ -15,20 +12,13 @@ namespace JsonWebKeys.UnitTests
 {
     public class JsonWebKeyCreatorTests
     {
-        private readonly Mock<ILogger<JsonWebKeyCreator>> _loggerMock;
-
-        public JsonWebKeyCreatorTests()
-        {
-            _loggerMock = new Mock<ILogger<JsonWebKeyCreator>>();
-        }
-
         [Fact]
         public void Create_should_return_key_with_populated_values()
         {
             // Arrange
 
             // Act
-            var sut = new JsonWebKeyCreator(_loggerMock.Object, new RsaSecurityKeyCreator());
+            var sut = new JsonWebKeyCreator(new RsaSecurityKeyCreator());
             var result = sut.Create();
 
             // Assert

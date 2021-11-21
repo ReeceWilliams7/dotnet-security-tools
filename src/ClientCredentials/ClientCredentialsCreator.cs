@@ -1,4 +1,6 @@
-﻿namespace RW7.DotNetSecurityTools.ClientCredentials
+﻿using Microsoft.Extensions.Logging;
+
+namespace RW7.DotNetSecurityTools.ClientCredentials
 {
     public class ClientCredentialsCreator : IClientCredentialsCreator
     {
@@ -7,6 +9,8 @@
         private readonly IClientIdGenerator _clientIdGenerator;
 
         private readonly IClientSecretGenerator _clientSecretGenerator;
+
+        public ClientCredentialsCreator() => new ClientCredentialsCreator(new GuidClientIdGenerator(), new Base64RngCryptoClientSecretGenerator());
 
         public ClientCredentialsCreator(IClientIdGenerator clientIdGenerator, IClientSecretGenerator clientSecretGenerator)
         {

@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>RW7.DotNetSecurityTools.RsaSecurityKeys</AssemblyName>
     <RootNamespace>RW7.DotNetSecurityTools.RsaSecurityKeys</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IdentityModel" Version="5.0.1" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+    <PackageReference Include="IdentityModel" Version="5.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.14.1" />
   </ItemGroup>
 
   <ItemGroup>

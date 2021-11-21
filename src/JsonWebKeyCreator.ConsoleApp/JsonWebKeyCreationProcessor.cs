@@ -29,18 +29,18 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
 
         public async Task ProcessAsync(Options options)
         {
-            _logger.LogInformation("Creating JsonWebKey....");
+            _logger.LogDebug("Creating JsonWebKey....");
             var output = _jsonWebKeyCreator.Create();
-            _logger.LogInformation("Successfully created JsonWebKey....");
+            _logger.LogDebug("Successfully created JsonWebKey....");
 
             foreach (var outputType in options.OutputTypes)
             {
-                _logger.LogInformation($"Looking for output writers for the JsonWebKey, of the requested type \"{outputType}\"");
+                _logger.LogDebug($"Looking for output writers for the JsonWebKey, of the requested type \"{outputType}\"");
                 foreach (var outputWriter in _outputWriters)
                 {
                     if (outputWriter.CanWrite(Enum.GetName(typeof(OutputType), outputType)))
                     {
-                        _logger.LogInformation($"Found an output writer matching the requested type \"{outputType}\" - {outputWriter.GetType().Name}");
+                        _logger.LogDebug($"Found an output writer matching the requested type \"{outputType}\" - {outputWriter.GetType().Name}");
                         await outputWriter.WriteAsync(output);
                     }
                 }
