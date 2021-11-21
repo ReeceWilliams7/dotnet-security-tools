@@ -43,8 +43,15 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
             }
 
             await File.WriteAllTextAsync(Path.Combine(_options.Directory, JsonWebKeyFileName), output.JsonWebKeyString);
-            await File.WriteAllTextAsync(Path.Combine(_options.Directory, RsaPublicKeyFileName), output.RsaPublicKey);
-            await File.WriteAllTextAsync(Path.Combine(_options.Directory, RsaPrivateKeyFileName), output.RsaPrivateKey);
+            if (_options.OutputBase64)
+            {
+                await File.WriteAllTextAsync(Path.Combine(_options.Directory, JsonWebKeyFileName), output.Base64JsonWebKey);
+            }
+            if (_options.OutputRsaKeys)
+            {
+                await File.WriteAllTextAsync(Path.Combine(_options.Directory, RsaPublicKeyFileName), output.RsaPublicKey);
+                await File.WriteAllTextAsync(Path.Combine(_options.Directory, RsaPrivateKeyFileName), output.RsaPrivateKey);
+            }
 
             _logger.LogInformation($"JsonWebKey details written to files in {_options.Directory}");
         }

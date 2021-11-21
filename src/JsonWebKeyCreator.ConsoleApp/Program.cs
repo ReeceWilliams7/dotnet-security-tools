@@ -44,7 +44,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
         private static ServiceProvider BuildServiceProvider(Options options)
         {
             var services = new ServiceCollection();
-            services.AddSingleton<Options>(options);
+            services.AddSingleton(options);
             services.AddJsonWebKeyCreatorServices();
 
             return services.BuildServiceProvider();

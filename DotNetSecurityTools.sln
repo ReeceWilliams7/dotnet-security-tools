@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4D57C22E-111C-44C8-B7FB-4317929E2B32}"
 EndProject
@@ -29,9 +29,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RsaSecurityKeys.UnitTests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonWebKeys.UnitTests", "tests\JsonWebKeys.UnitTests\JsonWebKeys.UnitTests.csproj", "{591F0E36-2A6C-4036-9D87-2FF133CD5AC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCredentialsCreator.ConsoleApp", "src\ClientCredentialsCreator.ConsoleApp\ClientCredentialsCreator.ConsoleApp.csproj", "{7B3FA63A-E969-4B7E-B3FB-E624050FD8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCredentialsCreator.ConsoleApp", "src\ClientCredentialsCreator.ConsoleApp\ClientCredentialsCreator.ConsoleApp.csproj", "{7B3FA63A-E969-4B7E-B3FB-E624050FD8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCredentials", "src\ClientCredentials\ClientCredentials.csproj", "{19F42225-FB11-4568-A76C-6454F8979D64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCredentials", "src\ClientCredentials\ClientCredentials.csproj", "{19F42225-FB11-4568-A76C-6454F8979D64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{A2873E00-95ED-4118-B0DD-7477D2C6D91A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{15F56074-9816-4077-8A05-D366CA32761B}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet_branch.yml = .github\workflows\dotnet_branch.yml
+		.github\workflows\dotnet_main.yml = .github\workflows\dotnet_main.yml
+		.github\workflows\dotnet_pr.yml = .github\workflows\dotnet_pr.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -166,6 +175,7 @@ Global
 		{591F0E36-2A6C-4036-9D87-2FF133CD5AC7} = {D7DA843A-77F5-4752-891C-096811B26D18}
 		{7B3FA63A-E969-4B7E-B3FB-E624050FD8E7} = {3C2FE806-4D11-4B59-AEA4-767BD96BF82B}
 		{19F42225-FB11-4568-A76C-6454F8979D64} = {4D57C22E-111C-44C8-B7FB-4317929E2B32}
+		{15F56074-9816-4077-8A05-D366CA32761B} = {A2873E00-95ED-4118-B0DD-7477D2C6D91A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A3DEB5E-D469-44E8-9CAD-37EFAC8D1481}

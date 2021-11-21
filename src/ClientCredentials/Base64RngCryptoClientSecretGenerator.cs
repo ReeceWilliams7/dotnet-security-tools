@@ -7,7 +7,7 @@ namespace RW7.DotNetSecurityTools.ClientCredentials
     {
         public string Generate(int length)
         {
-            using var rng = new RNGCryptoServiceProvider();
+            using var rng = RandomNumberGenerator.Create();
 
             var buffer = new byte[length];
             rng.GetBytes(buffer);

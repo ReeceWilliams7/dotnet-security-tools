@@ -28,5 +28,19 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             "directory",
             HelpText = "The directory path to output the files to, if 'file' selected as an output type. Defaults to a new folder on the users temp path if not specified.")]
         public string Directory { get; set; }
+
+        [Option(
+            'b', 
+            "output-base64", 
+            Default = false,
+            HelpText = "Output JWK as Base64 Encoded string")]
+        public bool OutputBase64 { get;set; }
+
+        [Option(
+            'r',
+            "output-rsa-keys",
+            Default = false,
+            HelpText = "Output RSA Public and Private Keys")]
+        public bool OutputRsaKeys { get; set; }
     }
 }

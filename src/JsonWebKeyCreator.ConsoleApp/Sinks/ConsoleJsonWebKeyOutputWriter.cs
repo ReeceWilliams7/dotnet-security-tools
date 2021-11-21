@@ -11,9 +11,12 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
     {
         private readonly Action<string> _outputAction;
 
-        public ConsoleJsonWebKeyOutputWriter()
+        private readonly Options _options;
+
+        public ConsoleJsonWebKeyOutputWriter(Options options)
         {
             _outputAction = Console.WriteLine;
+            _options = options;
         }
 
         public string OutputType => Enum.GetName(typeof(OutputType), Core.OutputType.Console);
@@ -39,17 +42,23 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
 
             WriteSectionDivider();
 
-            WriteSection("Base64 Encoded JsonWebKey", output.Base64JsonWebKey);
+            if (_options.OutputBase64)
+            {
+                WriteSection("Base64 Encoded JsonWebKey", output.Base64JsonWebKey);
 
-            WriteSectionDivider();
+                WriteSectionDivider();
+            }
 
-            WriteSection("RSA Private Key", output.RsaPrivateKey);
+            if (_options.OutputRsaKeys)
+            {
+                WriteSection("RSA Private Key", output.RsaPrivateKey);
 
-            WriteSectionDivider();
+                WriteSectionDivider();
 
-            WriteSection("RSA Public Key", output.RsaPublicKey);
+                WriteSection("RSA Public Key", output.RsaPublicKey);
 
-            WriteSectionDivider();
+                WriteSectionDivider();
+            }
         }
 
         private void WriteSection(string sectionTitle, string sectionValue)
