@@ -4,13 +4,57 @@
 
 # A collection of convenient security related .NET tools.
 
-## JsonWebKeyCreator
+## JSON Web Keys (JWKs)
+
+## JsonWebKeyCreator.Core (Library/Package)
+
+### Installation
+
+```
+dotnet add package RW7.DotNetSecurityTools.JsonWebKeyCreator.Core --version 1.0.0
+```
+
+This is a core library for creating a JWK and providing some useful output formats.
+
+### Usage
+
+```csharp
+// Create a new instance using the default ctor -
+var jsonWebKeyCreator = new JsonWebKeyCreator();
+
+// Create a new JWK -
+var jsonWebKeyOutput = jsonWebKeyCreator.Create();
+```
+
+The `JsonWebKeyOutput` type looks like this -
+
+```csharp
+public class JsonWebKeyOutput
+{
+    // Internal .NET JsonWebKey type
+    public JsonWebKey JsonWebKey { get; set; }
+
+    // JSON serialized representation of the .NET JsonWebKey type
+    public string JsonWebKeyString { get; set; }
+
+    // Base64 encoded representation of the JSON serialized string
+    public string Base64JsonWebKey => IdentityModel.Base64Url.Encode(Encoding.UTF8.GetBytes(JsonWebKeyString));
+
+    // PEM Encoded RSA Public Key used to create the JWK
+    public string RsaPublicKey { get; set; }
+
+    // PEM Encoded RSA Private Key used to create the JWK
+    public string RsaPrivateKey { get; set; }
+}
+```
+
+## JsonWebKeyCreator (Tooling)
+
+### Installation
 
 ```
 dotnet tool install --global RW7.DotNetSecurityTools.JsonWebKeyCreator
 ```
-
-Produces a new JsonWebKey, internally using an RsaSecurityKey.
 
 Once installed, simply run the following command - 
 
@@ -21,10 +65,6 @@ create-jwk
 By default, this will outputs the following to the console - 
 
 * The full JsonWebKey itself (including private key parts)
-* Base64 encoded version of the full JsonWebKey
-* PEM encoded RSA PRIVATE KEY (PKCS1)
-* PEM encoded RSA PUBLIC KEY (PKCS1)
-
 ___
 
 Additional command line are as follows - 
@@ -64,6 +104,18 @@ The following files will be written -
 * JsonWebKey.jwk - the contents of the JsonWebKey in indentended Json format.
 * RsaPublicKey.pem - the PEM encoded RSA Public Key for the JsonWebKey.
 * RsaPrivateKey.pem - the PEM encoded RSA Private Key used for the JsonWebKey.
+
+```
+-b | --output-base64
+```
+
+Whether to output the JWK Base64 encoded representation
+
+```
+-r | --output-rsa-keys
+```
+
+Whether to output the PEM encoded RSA Keys used to create the JWK
 
 ___
 
