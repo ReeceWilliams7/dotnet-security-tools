@@ -1,7 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-using Newtonsoft.Json;
-
 using RW7.DotNetSecurityTools.JsonWebKeys.Models;
 using RW7.DotNetSecurityTools.RsaSecurityKeys;
 using RW7.DotNetSecurityTools.RsaSecurityKeys.Extensions;
@@ -21,8 +19,6 @@ namespace RW7.DotNetSecurityTools.JsonWebKeys
 
         public JsonWebKeyOutput Create()
         {
-            var output = new JsonWebKeyOutput();
-
             var rsaSecurityKey = _rsaSecurityKeyCreator.Create();
             var rsaPublicKey = rsaSecurityKey.Rsa.ExportPemEncodedPublicKey();
             var rsaPrivateKey = rsaSecurityKey.Rsa.ExportPemEncodedPrivateKey();
@@ -30,13 +26,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeys
             var jwk = JsonWebKeyConverter.ConvertFromRSASecurityKey(rsaSecurityKey);
             jwk.Alg = SecurityAlgorithms.RsaSha256;
 
-            output.JsonWebKey = jwk;
-
-            var jwkJson = JsonConvert.SerializeObject(jwk, Formatting.Indented);
-
-            output.RsaPublicKey = rsaPublicKey;
-            output.RsaPrivateKey = rsaPrivateKey;
-            output.JsonWebKeyString = jwkJson;
+            var output = new JsonWebKeyOutput(jwk, rsaPublicKey, rsaPrivateKey);
 
             return output;
         }

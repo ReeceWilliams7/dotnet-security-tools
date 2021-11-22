@@ -6,6 +6,8 @@
 
 ## JSON Web Keys (JWKs)
 
+Library and Tooling for creating Json Web Keys (JWKs)
+
 ## JsonWebKeyCreator.Core (Library/Package)
 
 ### Installation
@@ -13,8 +15,6 @@
 ```
 dotnet add package RW7.DotNetSecurityTools.JsonWebKeyCreator.Core --version 1.0.0
 ```
-
-This is a core library for creating a JWK and providing some useful output formats.
 
 ### Usage
 
@@ -32,19 +32,19 @@ The `JsonWebKeyOutput` type looks like this -
 public class JsonWebKeyOutput
 {
     // Internal .NET JsonWebKey type
-    public JsonWebKey JsonWebKey { get; set; }
+    public JsonWebKey JsonWebKey { get; }
 
     // JSON serialized representation of the .NET JsonWebKey type
-    public string JsonWebKeyString { get; set; }
+    public string JsonWebKeyString { get; }
 
     // Base64 encoded representation of the JSON serialized string
-    public string Base64JsonWebKey => IdentityModel.Base64Url.Encode(Encoding.UTF8.GetBytes(JsonWebKeyString));
+    public string Base64JsonWebKey { get; }
 
     // PEM Encoded RSA Public Key used to create the JWK
-    public string RsaPublicKey { get; set; }
+    public string RsaPublicKey { get; }
 
     // PEM Encoded RSA Private Key used to create the JWK
-    public string RsaPrivateKey { get; set; }
+    public string RsaPrivateKey { get; }
 }
 ```
 
@@ -119,15 +119,52 @@ Whether to output the PEM encoded RSA Keys used to create the JWK
 
 ___
 
-## ClientCredentialsCreator
+## Client Credentials
+
+Library and Tooling for creating Client Credentials (ID and Secret), for use with, for example, OIDC or OAuth2.0 clients.
+
+## ClientCredentialsCreator.Core (Library/Package)
+
+### Installation
+
+```
+dotnet add package RW7.DotNetSecurityTools.ClientCredentialsCreator.Core
+```
+
+### Usage
+
+```csharp
+// Create a new instance using the default ctor -
+var clientCredentialsCreator = new ClientCredentialsCreator();
+
+// Create a new Client Credentials set -
+var clientCredentials = clientCredentialsCreator.Create();
+```
+
+The `JsonWebKeyOutput` type looks like this -
+
+```csharp
+public class JsonWebKeyOutput
+{
+public class ClientCredentialsOutput
+{
+    // The Client Id
+    public string ClientId { get; }
+    
+    // the Client Secret
+    public string ClientSecret { get; }
+}
+```
+
+## ClientCredentialsCreator (Tooling)
+
+### Installation
 
 ```
 dotnet tool install --global RW7.DotNetSecurityTools.ClientCredentialsCreator
 ```
 
-Produces a new Client ID and Secret, for use with, for example, OIDC or OAuth2.0 clients.
-
-Once installed, simply run the following command - 
+### Usage
 
 ```
 create-client-credentials
