@@ -31,3 +31,21 @@ jobs:
       run: dotnet pack ./src/ClientCredentialsCreator.ConsoleApp/ClientCredentialsCreator.ConsoleApp.csproj --configuration "Release" --output ./artifacts
     - name: Push
       run: dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+
+    - name: Docker Setup Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME_ANEMPTYREECE }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN_ANEMPTYREECE }}
+
+    - name: Build container
+      uses: docker/build-push-action@v2.7.0
+      with:
+        file: src/WebApp/Dockerfile
+        context: .
+        platforms: linux/amd64
+        push: true
+        tags: anemptyreece/dotnet-security-tools:latest
