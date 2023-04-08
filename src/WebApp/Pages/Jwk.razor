@@ -9,17 +9,39 @@
 
 <button class="btn btn-primary" @onclick="CreateJwk">Create</button>
 <br/><br/>
-<textarea rows="50" value="@_jwk" class="form-control">
 
-</textarea>
+<TabControl>
+    <TabPage Text="JWK">
+        <div class="row spacer"></div>
+        <textarea rows="50" value="@_jwk" class="form-control">
+
+        </textarea>
+    </TabPage>
+    <TabPage Text="PEM">
+        <div class="row spacer"></div>
+        <textarea rows="50" value="@_jwkPem" class="form-control">
+
+        </textarea>
+    </TabPage>
+    <TabPage Text="Base64">
+        <div class="row spacer"></div>
+        <textarea rows="50" value="@_jwkBase64" class="form-control">
+
+        </textarea>
+    </TabPage>
+</TabControl>
 
 @code {
     private string _jwk = string.Empty;
+    private string _jwkPem = string.Empty;
+    private string _jwkBase64 = string.Empty;
 
     private void CreateJwk()
     {
         var jwk = _jsonWebKeyCreator.Create();
 
         _jwk = jwk.JsonWebKeyString;
+        _jwkPem = jwk.RsaPrivateKey;
+        _jwkBase64 = jwk.Base64JsonWebKey;
     }
 }

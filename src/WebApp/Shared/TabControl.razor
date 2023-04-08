@@ -1,0 +1,40 @@
+﻿<CascadingValue Value="this">
+	<ul class="nav nav-tabs justify-content-left">
+		@foreach (TabPage tabPage in Pages)
+		{
+	  <li class="nav-item">
+	   <button type="button" class="btn nav-link @GetButtonClass(tabPage)" href="#" @onclick=@(() => ActivatePage(tabPage))>@tabPage.Text</button>
+	  </li>
+		}
+	</ul>
+
+	@ChildContent
+</CascadingValue>
+
+@code {
+	[Parameter]
+	public RenderFragment ChildContent { get; set; }
+
+	public TabPage ActivePage { get; set; }
+	List<TabPage> Pages = new List<TabPage>();
+
+	internal void AddPage(TabPage tabPage)
+	{
+		Pages.Add(tabPage);
+		if (Pages.Count == 1)
+		{
+			ActivePage = tabPage;
+		}
+		StateHasChanged();
+	}
+
+	string GetButtonClass(TabPage page)
+	{
+		return page == ActivePage ? "active" : "";
+	}
+
+	void ActivatePage(TabPage page)
+	{
+		ActivePage = page;
+	}
+}
