@@ -29,12 +29,19 @@
 
         </textarea>
     </TabPage>
+    <TabPage Text="PKCS8">
+        <div class="row spacer"></div>
+        <textarea rows="50" value="@_pkcs8" class="form-control">
+
+        </textarea>
+    </TabPage>
 </TabControl>
 
 @code {
     private string _jwk = string.Empty;
     private string _jwkPem = string.Empty;
     private string _jwkBase64 = string.Empty;
+    private string _pkcs8 = string.Empty;
 
     private void CreateJwk()
     {
@@ -43,5 +50,6 @@
         _jwk = jwk.JsonWebKeyString;
         _jwkPem = jwk.RsaPrivateKey;
         _jwkBase64 = jwk.Base64JsonWebKey;
+        _pkcs8 = jwk.Pkcs8PrivateKey;
     }
 }

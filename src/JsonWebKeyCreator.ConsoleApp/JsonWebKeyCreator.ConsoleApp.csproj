@@ -7,7 +7,7 @@
     <RootNamespace>RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp</RootNamespace>
     <PackageId>RW7.DotNetSecurityTools.JsonWebKeyCreator</PackageId>
     <Product>RW7.DotNetSecurityTools</Product>
-    <Version>1.1.0</Version>
+    <Version>2.0.0</Version>
     <Authors>RW7</Authors>
     <Company>RW7</Company>
     <PackageTags>JsonWebKey, JWK</PackageTags>

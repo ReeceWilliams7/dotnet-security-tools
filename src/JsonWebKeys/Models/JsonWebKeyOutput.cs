@@ -9,12 +9,12 @@ namespace RW7.DotNetSecurityTools.JsonWebKeys.Models
 {
     public class JsonWebKeyOutput
     {
-
-        public JsonWebKeyOutput(JsonWebKey jsonWebKey, string rsaPublicKey, string rsaPrivateKey)
+        public JsonWebKeyOutput(JsonWebKey jsonWebKey, string rsaPublicKey, string rsaPrivateKey, string pkcs8PrivateKey)
         {
             JsonWebKey = jsonWebKey;
             RsaPublicKey = rsaPublicKey;
             RsaPrivateKey = rsaPrivateKey;
+            Pkcs8PrivateKey = pkcs8PrivateKey;
         }
 
         public JsonWebKey JsonWebKey { get; }
@@ -43,5 +43,7 @@ namespace RW7.DotNetSecurityTools.JsonWebKeys.Models
         public string RsaPublicKey { get; }
 
         public string RsaPrivateKey { get; }
+
+        public string Pkcs8PrivateKey { get; }
     }
 }
