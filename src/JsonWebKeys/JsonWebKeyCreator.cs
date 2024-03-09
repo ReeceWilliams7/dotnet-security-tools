@@ -22,11 +22,12 @@ namespace RW7.DotNetSecurityTools.JsonWebKeys
             var rsaSecurityKey = _rsaSecurityKeyCreator.Create();
             var rsaPublicKey = rsaSecurityKey.Rsa.ExportPemEncodedPublicKey();
             var rsaPrivateKey = rsaSecurityKey.Rsa.ExportPemEncodedPrivateKey();
+            var pkcs8 = rsaSecurityKey.Rsa.ExportPkcs8PrivateKeyPem();
 
             var jwk = JsonWebKeyConverter.ConvertFromRSASecurityKey(rsaSecurityKey);
             jwk.Alg = SecurityAlgorithms.RsaSha256;
 
-            var output = new JsonWebKeyOutput(jwk, rsaPublicKey, rsaPrivateKey);
+            var output = new JsonWebKeyOutput(jwk, rsaPublicKey, rsaPrivateKey, pkcs8);
 
             return output;
         }
