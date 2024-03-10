@@ -42,5 +42,12 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp
             Default = false,
             HelpText = "Output RSA Public and Private Keys")]
         public bool OutputRsaKeys { get; set; }
+
+        [Option(
+            'p',
+            "output-pkcs8",
+            Default = false,
+            HelpText = "Output PKCS8 Private Jey")]
+        public bool OutputPkcs8 { get; set; }
     }
 }

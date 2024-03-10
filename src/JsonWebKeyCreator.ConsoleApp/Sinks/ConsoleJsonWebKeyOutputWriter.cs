@@ -59,6 +59,13 @@ namespace RW7.DotNetSecurityTools.JsonWebKeyCreator.ConsoleApp.Sinks
 
                 WriteSectionDivider();
             }
+
+            if (_options.OutputPkcs8)
+            {
+                WriteSection("PKCS8 Private Key", output.Pkcs8PrivateKey);
+
+                WriteSectionDivider();
+            }
         }
 
         private void WriteSection(string sectionTitle, string sectionValue)
